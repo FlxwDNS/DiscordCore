@@ -12,7 +12,8 @@ import java.util.function.Function;
 public final class EventHandler {
     private final GatewayDiscordClient client;
 
-    public <E extends Event> void registerEvent(Class<E> event, Consumer<? super E> consumer) {client.on(event).subscribe(consumer::accept);
+    public <E extends Event> void registerEvent(Class<E> event, Consumer<? super E> consumer) {
+        client.on(event).subscribe(consumer);
     }
 
     public <E extends Event, T> void registerEvent(Class<E> event, Function<E, Publisher<T>> mapper) {

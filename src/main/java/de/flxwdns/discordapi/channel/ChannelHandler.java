@@ -2,10 +2,12 @@ package de.flxwdns.discordapi.channel;
 
 import de.flxwdns.discordapi.DiscordCore;
 import de.flxwdns.discordapi.button.MessageButton;
+import de.flxwdns.discordapi.message.MessageBuilder;
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.component.ActionComponent;
 import discord4j.core.object.component.ActionRow;
+import discord4j.core.object.component.Button;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
@@ -20,6 +22,10 @@ public final class ChannelHandler {
 
     public void sendMessage(MessageChannel channel, String message) {
         channel.createMessage(message).block();
+    }
+
+    public void sendMessage(String channelId, String message) {
+        sendMessage(client.getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), message);
     }
 
     /*public void sendButtons(MessageChannel channel, List<MessageButton> buttons) {
