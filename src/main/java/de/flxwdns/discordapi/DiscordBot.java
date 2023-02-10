@@ -13,7 +13,6 @@ public abstract class DiscordBot {
     private final GatewayDiscordClient client;
 
     public DiscordBot() {
-        initialize();
         var bot = DiscordClient.create(getToken()).gateway();
         bot.setEnabledIntents(IntentSet.all());
         client = bot.login().block();
@@ -23,6 +22,8 @@ public abstract class DiscordBot {
         DiscordCore.setChannelHandler(new ChannelHandler(client));
         DiscordCore.setCommandHandler(new CommandHandler(client));
         DiscordCore.setEventHandler(new EventHandler(client));
+
+        initialize();
 
         client.onDisconnect().block();
     }
