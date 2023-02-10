@@ -14,7 +14,7 @@ public final class EventHandler {
     public <E extends Event> void registerEvent(Class<E> event, Consumer<? super E> consumer) {
         client.on(event).subscribe(it -> {
             if(it instanceof MessageCreateEvent messageEvent) {
-                if(messageEvent.getClient().equals(client)) {
+                if(messageEvent.getMessage().getAuthor().equals(client)) {
                     return;
                 }
             }
