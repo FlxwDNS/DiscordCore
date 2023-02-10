@@ -63,6 +63,7 @@ public final class MessageBuilder {
 
     public MessageBuilder fields(List<EmbedCreateFields.Field> fields) {
         fields.forEach(it -> builder.addField(it));
+
         return this;
     }
 

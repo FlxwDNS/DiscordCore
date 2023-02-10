@@ -1,10 +1,12 @@
 package de.flxwdns.discordapi;
 
+import de.flxwdns.discordapi.button.ButtonHandler;
 import de.flxwdns.discordapi.channel.ChannelHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
+import discord4j.core.object.presence.*;
 import discord4j.gateway.intent.IntentSet;
 import lombok.Getter;
 
@@ -22,10 +24,15 @@ public abstract class DiscordBot {
         DiscordCore.setChannelHandler(new ChannelHandler(client));
         DiscordCore.setCommandHandler(new CommandHandler(client));
         DiscordCore.setEventHandler(new EventHandler(client));
+        DiscordCore.setButtonHandler(new ButtonHandler());
 
         initialize();
 
         client.onDisconnect().block();
+    }
+
+    public void setActivity(Status status, ClientActivity activity) {
+        client.updatePresence(ClientPresence.of(status, activity));
     }
 
     abstract public void initialize();
