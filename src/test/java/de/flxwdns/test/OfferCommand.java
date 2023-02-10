@@ -25,6 +25,9 @@ public class OfferCommand extends SlashCommand {
                 }),
                 new MessageButton(Button.primary("test_2", "Test2"), onClick -> {
                     return onClick.reply("test");
+                }),
+                new MessageButton(Button.link("https://test.de", "Test2"), onClick -> {
+                    return onClick.reply("test");
                 })
         ));
     }
