@@ -16,6 +16,7 @@ public final class EventHandler {
         client.on(event).subscribe(consumer::accept);
     }
 
+
     public <E extends Event, T> void registerEvent(Class<E> event, Function<E, Publisher<T>> mapper) {
         client.on(event, mapper).subscribe();
     }
