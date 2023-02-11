@@ -40,13 +40,7 @@ public final class ChannelHandler {
         return messageConstruct.getChannel().createMessage("").withEmbeds(messageConstruct.getEmbed()).withComponents(ActionRow.of(components)).block();
     }
 
-    public InteractionApplicationCommandCallbackReplyMono getReplyEmbedWithButtons(InteractionApplicationCommandCallbackReplyMono reply, EmbedCreateSpec embedCreateSpec, List<MessageButton> buttons) {
-        List<ActionComponent> components = new ArrayList<>();
-        buttons.forEach(it -> {
-            DiscordCore.getButtonHandler().addButton(it);
-            components.add(it.getButton());
-        });
-
-        return reply.withEmbeds(embedCreateSpec).withComponents(ActionRow.of(components));
+    public InteractionApplicationCommandCallbackReplyMono getReplyEmbedConstruct(InteractionApplicationCommandCallbackReplyMono reply, EmbedCreateSpec embedSpec) {
+        return reply.withEmbeds(embedSpec);
     }
 }
