@@ -46,7 +46,7 @@ public final class ChannelBuilder {
         return this;
     }
 
-    public TextChannelCreateSpec toEmbed() {
+    public TextChannelCreateSpec toChannel() {
         return builder.build();
     }
 }
