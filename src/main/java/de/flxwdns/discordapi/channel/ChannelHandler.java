@@ -41,7 +41,7 @@ public final class ChannelHandler {
         messageConstruct.getMenu().getOptions().forEach(option -> options.add(option.getSelectMenu()));
 
         DiscordCore.getMenuHandler().addMenu(messageConstruct.getMenu());
-        components.add(SelectMenu.of(messageConstruct.getMenu().getCustomId(), options).withMinValues(0).withMaxValues(2));
+        components.add(SelectMenu.of(messageConstruct.getMenu().getCustomId(), options).withPlaceholder(messageConstruct.getMenu().getPlaceholder()).withMinValues(messageConstruct.getMenu().getMinimumValues()).withMaxValues(messageConstruct.getMenu().getMaximumValues()));
 
 
         return messageConstruct.getChannel().createMessage("").withEmbeds(messageConstruct.getEmbed()).withComponents(ActionRow.of(components)).block();

@@ -12,6 +12,9 @@ import java.util.function.Function;
 @AllArgsConstructor
 public final class MessageMenu {
     private final String customId;
+    private final String placeholder;
+    private int minimumValues;
+    private int maximumValues;
     private final List<MenuOption> options;
     private final Function<SelectMenuInteractionEvent, InteractionApplicationCommandCallbackReplyMono> onInteract;
 }
