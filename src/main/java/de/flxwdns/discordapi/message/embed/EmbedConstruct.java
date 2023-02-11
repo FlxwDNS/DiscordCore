@@ -1,4 +1,4 @@
-package de.flxwdns.discordapi.message;
+package de.flxwdns.discordapi.message.embed;
 
 import de.flxwdns.discordapi.DiscordCore;
 import de.flxwdns.discordapi.button.MessageButton;

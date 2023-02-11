@@ -1,6 +1,6 @@
-package de.flxwdns.discordapi.message;
+package de.flxwdns.discordapi.message.embed;
 
-import discord4j.core.object.entity.channel.Channel;
+import de.flxwdns.discordapi.message.ColorType;
 import discord4j.core.spec.EmbedCreateFields;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
@@ -9,11 +9,9 @@ import java.time.Instant;
 import java.util.List;
 
 public final class EmbedBuilder {
-    private EmbedCreateSpec.Builder builder;
-    private Channel channel;
+    private final EmbedCreateSpec.Builder builder;
 
     public EmbedBuilder() {
-        // Default Layout
         builder = EmbedCreateSpec.builder();
     }
 

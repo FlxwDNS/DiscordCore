@@ -1,7 +1,7 @@
-package de.flxwdns.discordapi.channel;
+package de.flxwdns.discordapi.message;
 
 import de.flxwdns.discordapi.DiscordCore;
-import de.flxwdns.discordapi.message.EmbedConstruct;
+import de.flxwdns.discordapi.message.embed.EmbedConstruct;
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.component.ActionComponent;
@@ -15,10 +15,10 @@ import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ChannelHandler {
+public final class MessageHandler {
     private final GatewayDiscordClient client;
 
-    public ChannelHandler() {
+    public MessageHandler() {
         client = DiscordCore.getClient();
     }
 

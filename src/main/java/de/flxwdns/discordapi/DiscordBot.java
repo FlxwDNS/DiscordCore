@@ -1,7 +1,8 @@
 package de.flxwdns.discordapi;
 
 import de.flxwdns.discordapi.button.ButtonHandler;
-import de.flxwdns.discordapi.channel.ChannelHandler;
+import de.flxwdns.discordapi.channel.builder.ChannelHandler;
+import de.flxwdns.discordapi.message.MessageHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
 import de.flxwdns.discordapi.menu.MenuHandler;
@@ -16,6 +17,8 @@ public abstract class DiscordBot {
     private final GatewayDiscordClient client;
 
     public DiscordBot() {
+        System.out.println("[ INFO] (main) Inject discord api...");
+
         var bot = DiscordClient.create(getToken()).gateway();
         bot.setEnabledIntents(IntentSet.all());
 
@@ -26,11 +29,16 @@ public abstract class DiscordBot {
         DiscordCore.setClient(client);
         DiscordCore.setEventHandler(new EventHandler());
         DiscordCore.setChannelHandler(new ChannelHandler());
+        DiscordCore.setMessageHandler(new MessageHandler());
         DiscordCore.setCommandHandler(new CommandHandler());
         DiscordCore.setButtonHandler(new ButtonHandler());
         DiscordCore.setMenuHandler(new MenuHandler());
 
+        System.out.println("[ INFO] (api) API connected");
+
         initialize();
+
+        System.out.println("[ INFO] (main) Bot connected");
 
         client.onDisconnect().block();
     }
