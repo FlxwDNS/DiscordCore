@@ -4,6 +4,7 @@ import de.flxwdns.discordapi.button.ButtonHandler;
 import de.flxwdns.discordapi.channel.ChannelHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
+import de.flxwdns.discordapi.menu.MenuHandler;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.presence.*;
@@ -27,6 +28,7 @@ public abstract class DiscordBot {
         DiscordCore.setCommandHandler(new CommandHandler());
         DiscordCore.setEventHandler(new EventHandler());
         DiscordCore.setButtonHandler(new ButtonHandler());
+        DiscordCore.setMenuHandler(new MenuHandler());
 
         initialize();
 
@@ -34,6 +36,9 @@ public abstract class DiscordBot {
     }
 
     public void setActivity(Status status, ClientActivity activity) {
+
+        setActivity(Status.IDLE, ClientActivity.playing("test"));
+
         client.updatePresence(ClientPresence.of(status, activity));
     }
 

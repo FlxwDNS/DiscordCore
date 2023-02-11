@@ -1,7 +1,6 @@
 package de.flxwdns.discordapi.channel;
 
 import de.flxwdns.discordapi.DiscordCore;
-import de.flxwdns.discordapi.button.MessageButton;
 import de.flxwdns.discordapi.message.EmbedConstruct;
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
@@ -35,6 +34,10 @@ public final class ChannelHandler {
         messageConstruct.getButtons().forEach(it -> {
             DiscordCore.getButtonHandler().addButton(it);
             components.add(it.getButton());
+        });
+        messageConstruct.getMenus().forEach(it -> {
+            DiscordCore.getMenuHandler().addMenu(it);
+            components.add(it.getMenu());
         });
 
         return messageConstruct.getChannel().createMessage("").withEmbeds(messageConstruct.getEmbed()).withComponents(ActionRow.of(components)).block();
