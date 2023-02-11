@@ -1,7 +1,7 @@
 package de.flxwdns.discordapi;
 
 import de.flxwdns.discordapi.button.ButtonHandler;
-import de.flxwdns.discordapi.channel.builder.ChannelHandler;
+import de.flxwdns.discordapi.channel.ChannelHandler;
 import de.flxwdns.discordapi.message.MessageHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;

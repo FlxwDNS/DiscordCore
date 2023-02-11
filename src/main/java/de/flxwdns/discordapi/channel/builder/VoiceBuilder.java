@@ -1,31 +1,31 @@
-package de.flxwdns.discordapi.channel;
+package de.flxwdns.discordapi.channel.builder;
 
-import de.flxwdns.discordapi.channel.builder.ChannelPermission;
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.PermissionOverwrite;
 import discord4j.core.spec.TextChannelCreateSpec;
+import discord4j.core.spec.VoiceChannelCreateSpec;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ChannelBuilder {
-    private final TextChannelCreateSpec.Builder builder;
+public final class VoiceBuilder {
+    private final VoiceChannelCreateSpec.Builder builder;
 
-    public ChannelBuilder() {
-        builder = TextChannelCreateSpec.builder();
+    public VoiceBuilder() {
+        builder = VoiceChannelCreateSpec.builder();
     }
 
-    public ChannelBuilder name(String name) {
+    public VoiceBuilder name(String name) {
         builder.name(name);
         return this;
     }
 
-    public ChannelBuilder category(String categoryId) {
+    public VoiceBuilder category(String categoryId) {
         builder.parentId(Snowflake.of(categoryId));
         return this;
     }
 
-    public ChannelBuilder permissions(List<ChannelPermission> permissions) {
+    public VoiceBuilder permissions(List<ChannelPermission> permissions) {
         List<PermissionOverwrite> permissionOverwrites = new ArrayList<>();
 
         permissions.forEach(permission -> {
@@ -36,17 +36,7 @@ public final class ChannelBuilder {
         return this;
     }
 
-    public ChannelBuilder topic(String topic) {
-        builder.topic(topic);
-        return this;
-    }
-
-    public ChannelBuilder nsfw(Boolean value) {
-        builder.nsfw(value);
-        return this;
-    }
-
-    public TextChannelCreateSpec toChannel() {
+    public VoiceChannelCreateSpec toVoice() {
         return builder.build();
     }
 }

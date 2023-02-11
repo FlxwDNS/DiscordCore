@@ -17,6 +17,7 @@ public final class EmbedBuilder {
 
     public EmbedBuilder title(String title) {
         builder.title(title);
+
         return this;
     }
 
