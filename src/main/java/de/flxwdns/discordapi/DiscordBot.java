@@ -17,13 +17,15 @@ public abstract class DiscordBot {
     public DiscordBot() {
         var bot = DiscordClient.create(getToken()).gateway();
         bot.setEnabledIntents(IntentSet.all());
+
         client = bot.login().block();
 
         if(client == null) System.exit(0);
 
-        DiscordCore.setChannelHandler(new ChannelHandler(client));
-        DiscordCore.setCommandHandler(new CommandHandler(client));
-        DiscordCore.setEventHandler(new EventHandler(client));
+        DiscordCore.setClient(client);
+        DiscordCore.setChannelHandler(new ChannelHandler());
+        DiscordCore.setCommandHandler(new CommandHandler());
+        DiscordCore.setEventHandler(new EventHandler());
         DiscordCore.setButtonHandler(new ButtonHandler());
 
         initialize();

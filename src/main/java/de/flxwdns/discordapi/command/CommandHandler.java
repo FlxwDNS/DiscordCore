@@ -1,6 +1,6 @@
 package de.flxwdns.discordapi.command;
 
-import discord4j.core.GatewayDiscordClient;
+import de.flxwdns.discordapi.DiscordCore;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 
 import java.util.ArrayList;
@@ -8,18 +8,18 @@ import java.util.List;
 
 public final class CommandHandler {
     private final List<SlashCommand> commandList;
-    private final GatewayDiscordClient client;
 
-    public CommandHandler(GatewayDiscordClient client) {
+    public CommandHandler() {
         commandList = new ArrayList<>();
-        this.client = client;
 
-        client.on(ChatInputInteractionEvent.class, event -> commandList.stream().filter(command -> command.getRequest().name().equals(event.getCommandName())).findFirst().get().handle(event)).subscribe();
+        DiscordCore.getEventHandler().registerEvent(ChatInputInteractionEvent.class, event -> {
+            commandList.stream().filter(command -> command.getRequest().name().equals(event.getCommandName())).findFirst().get().handle(event);
+        });
     }
 
     public void addCommand(SlashCommand slashCommand) {
         commandList.add(slashCommand);
-        slashCommand.registerCommand(client, client.getRestClient().getApplicationId().block());
+        slashCommand.registerCommand(DiscordCore.getClient(), DiscordCore.getClient().getRestClient().getApplicationId().block());
     }
 
 }

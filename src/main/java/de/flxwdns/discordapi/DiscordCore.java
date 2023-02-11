@@ -4,6 +4,7 @@ import de.flxwdns.discordapi.button.ButtonHandler;
 import de.flxwdns.discordapi.channel.ChannelHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
+import discord4j.core.GatewayDiscordClient;
 import org.jetbrains.annotations.NotNull;
 
 public final class DiscordCore {
@@ -11,6 +12,7 @@ public final class DiscordCore {
     private static CommandHandler commandHandler;
     private static EventHandler eventHandler;
     private static ButtonHandler buttonHandler;
+    private static GatewayDiscordClient client;
 
     public static void setChannelHandler(@NotNull ChannelHandler channelHandler) {
         DiscordCore.channelHandler = channelHandler;
@@ -24,6 +26,9 @@ public final class DiscordCore {
     public static void setButtonHandler(@NotNull ButtonHandler buttonHandler) {
         DiscordCore.buttonHandler = buttonHandler;
     }
+    public static void setClient(@NotNull GatewayDiscordClient client) {
+        DiscordCore.client = client;
+    }
 
     public static ChannelHandler getChannelHandler() {
         return DiscordCore.channelHandler;
@@ -36,5 +41,8 @@ public final class DiscordCore {
     }
     public static ButtonHandler getButtonHandler() {
         return DiscordCore.buttonHandler;
+    }
+    public static GatewayDiscordClient getClient() {
+        return DiscordCore.client;
     }
 }
