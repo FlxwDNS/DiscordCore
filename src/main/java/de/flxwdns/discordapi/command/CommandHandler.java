@@ -13,7 +13,7 @@ public final class CommandHandler {
         commandList = new ArrayList<>();
 
         DiscordCore.getEventHandler().registerEvent(ChatInputInteractionEvent.class, event -> {
-            commandList.stream().filter(command -> command.getRequest().name().equals(event.getCommandName())).findFirst().get().handle(event);
+            return commandList.stream().filter(command -> command.getRequest().name().equals(event.getCommandName())).findFirst().get().handle(event);
         });
     }
 
