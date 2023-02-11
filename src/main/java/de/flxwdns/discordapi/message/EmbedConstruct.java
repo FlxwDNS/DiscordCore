@@ -16,25 +16,25 @@ public final class EmbedConstruct {
     private final EmbedCreateSpec embed;
 
     private final List<MessageButton> buttons;
-    private final List<MessageMenu> menus;
+    private final MessageMenu menu;
 
-    public EmbedConstruct(MessageChannel channel, EmbedCreateSpec embed, List<MessageButton> buttons, List<MessageMenu> menus) {
+    public EmbedConstruct(MessageChannel channel, EmbedCreateSpec embed, List<MessageButton> buttons, MessageMenu menu) {
         this.channel = channel;
         this.embed = embed;
 
         this.buttons = buttons;
-        this.menus = menus;
+        this.menu = menu;
     }
 
     public EmbedConstruct(String channelId, EmbedCreateSpec embed) {
-        this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, List.of(), List.of());
+        this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, List.of(), null);
     }
 
     public EmbedConstruct(String channelId, EmbedCreateSpec embed, List<MessageButton> buttons) {
-        this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, buttons, List.of());
+        this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, buttons, null);
     }
 
-    public EmbedConstruct(String channelId, EmbedCreateSpec embed, List<MessageButton> buttons, List<MessageMenu> menus) {
-        this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, buttons, menus);
+    public EmbedConstruct(String channelId, EmbedCreateSpec embed, MessageMenu menu) {
+        this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, List.of(), menu);
     }
 }

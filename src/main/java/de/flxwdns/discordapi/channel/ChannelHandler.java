@@ -6,6 +6,7 @@ import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.component.ActionComponent;
 import discord4j.core.object.component.ActionRow;
+import discord4j.core.object.component.SelectMenu;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
@@ -35,10 +36,13 @@ public final class ChannelHandler {
             DiscordCore.getButtonHandler().addButton(it);
             components.add(it.getButton());
         });
-        messageConstruct.getMenus().forEach(it -> {
-            DiscordCore.getMenuHandler().addMenu(it);
-            components.add(it.getMenu());
-        });
+
+        List<SelectMenu.Option> options = new ArrayList<>();
+        messageConstruct.getMenu().getOptions().forEach(option -> options.add(option.getSelectMenu()));
+
+        DiscordCore.getMenuHandler().addMenu(messageConstruct.getMenu());
+        components.add(SelectMenu.of(messageConstruct.getMenu().getCustomId(), options).withMinValues(0).withMaxValues(2));
+
 
         return messageConstruct.getChannel().createMessage("").withEmbeds(messageConstruct.getEmbed()).withComponents(ActionRow.of(components)).block();
     }

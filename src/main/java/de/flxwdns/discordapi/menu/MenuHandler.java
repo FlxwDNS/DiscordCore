@@ -1,7 +1,6 @@
 package de.flxwdns.discordapi.menu;
 
 import de.flxwdns.discordapi.DiscordCore;
-import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 
 import java.util.ArrayList;
@@ -15,8 +14,11 @@ public final class MenuHandler {
         menuList = new ArrayList<>();
 
         DiscordCore.getEventHandler().registerEvent(SelectMenuInteractionEvent.class, event -> {
-            var menu = menuList.stream().filter(it -> it.getMenu().getCustomId().equals(event.getCustomId())).findFirst().get();
-            return menu.onClick(event);
+            var menu = menuList.stream().filter(it -> it.getCustomId().equals(event.getCustomId())).findFirst().get();
+
+            menu.getOptions().stream().filter(it -> !event.getValues().contains(it.getSelectMenu().getValue())).forEach(it -> it.onDisable(event));
+            event.getValues().forEach(value -> menu.getOptions().stream().filter(it -> it.getSelectMenu().getValue().equals(value)).forEach(it -> it.onEnable(event)));
+            return menu.getOnInteract().apply(event);
         });
     }
 

@@ -1,21 +1,17 @@
 package de.flxwdns.discordapi.menu;
 
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
-import discord4j.core.object.component.SelectMenu;
 import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.function.Function;
 
+@Getter
 @AllArgsConstructor
 public final class MessageMenu {
-    @Getter
-    private final SelectMenu menu;
-
-    private final Function<SelectMenuInteractionEvent, InteractionApplicationCommandCallbackReplyMono> onClick;
-
-    public InteractionApplicationCommandCallbackReplyMono onClick(SelectMenuInteractionEvent event) {
-        return onClick.apply(event);
-    }
+    private final String customId;
+    private final List<MenuOption> options;
+    private final Function<SelectMenuInteractionEvent, InteractionApplicationCommandCallbackReplyMono> onInteract;
 }
