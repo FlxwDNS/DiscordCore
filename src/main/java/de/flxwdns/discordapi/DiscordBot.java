@@ -36,7 +36,7 @@ public abstract class DiscordBot {
     }
 
     public void setActivity(Status status, ClientActivity activity) {
-        client.updatePresence(ClientPresence.of(status, activity));
+        client.updatePresence(ClientPresence.of(status, activity)).subscribe();
     }
 
     abstract public void initialize();
