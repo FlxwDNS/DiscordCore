@@ -8,8 +8,6 @@ import discord4j.core.spec.TextChannelCreateSpec;
 public final class ChannelHandler {
 
     public Channel createChannel(String guildId, TextChannelCreateSpec textChannel) {
-        var channel = DiscordCore.getClient().getGuildById(Snowflake.of(guildId)).block().createTextChannel(textChannel);
-        channel.subscribe();
-        return channel.block();
+        return DiscordCore.getClient().getGuildById(Snowflake.of(guildId)).block().createTextChannel(textChannel).block();
     }
 }
