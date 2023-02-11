@@ -37,12 +37,13 @@ public final class ChannelHandler {
             components.add(it.getButton());
         });
 
-        List<SelectMenu.Option> options = new ArrayList<>();
-        messageConstruct.getMenu().getOptions().forEach(option -> options.add(option.getSelectMenu()));
+        if(messageConstruct.getMenu() != null) {
+            List<SelectMenu.Option> options = new ArrayList<>();
+            messageConstruct.getMenu().getOptions().forEach(option -> options.add(option.getSelectMenu()));
 
-        DiscordCore.getMenuHandler().addMenu(messageConstruct.getMenu());
-        components.add(SelectMenu.of(messageConstruct.getMenu().getCustomId(), options).withPlaceholder(messageConstruct.getMenu().getPlaceholder()).withMinValues(messageConstruct.getMenu().getMinimumValues()).withMaxValues(messageConstruct.getMenu().getMaximumValues()));
-
+            DiscordCore.getMenuHandler().addMenu(messageConstruct.getMenu());
+            components.add(SelectMenu.of(messageConstruct.getMenu().getCustomId(), options).withPlaceholder(messageConstruct.getMenu().getPlaceholder()).withMinValues(messageConstruct.getMenu().getMinimumValues()).withMaxValues(messageConstruct.getMenu().getMaximumValues()));
+        }
 
         return messageConstruct.getChannel().createMessage("").withEmbeds(messageConstruct.getEmbed()).withComponents(ActionRow.of(components)).block();
     }
