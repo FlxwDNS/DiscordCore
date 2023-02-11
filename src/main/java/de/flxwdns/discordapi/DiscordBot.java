@@ -24,9 +24,9 @@ public abstract class DiscordBot {
         if(client == null) System.exit(0);
 
         DiscordCore.setClient(client);
+        DiscordCore.setEventHandler(new EventHandler());
         DiscordCore.setChannelHandler(new ChannelHandler());
         DiscordCore.setCommandHandler(new CommandHandler());
-        DiscordCore.setEventHandler(new EventHandler());
         DiscordCore.setButtonHandler(new ButtonHandler());
         DiscordCore.setMenuHandler(new MenuHandler());
 
@@ -36,9 +36,6 @@ public abstract class DiscordBot {
     }
 
     public void setActivity(Status status, ClientActivity activity) {
-
-        setActivity(Status.IDLE, ClientActivity.playing("test"));
-
         client.updatePresence(ClientPresence.of(status, activity));
     }
 
