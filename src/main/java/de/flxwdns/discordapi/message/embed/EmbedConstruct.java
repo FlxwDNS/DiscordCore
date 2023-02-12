@@ -1,9 +1,9 @@
 package de.flxwdns.discordapi.message.embed;
 
 import de.flxwdns.discordapi.DiscordCore;
-import de.flxwdns.discordapi.button.MessageButton;
 import de.flxwdns.discordapi.menu.MessageMenu;
 import discord4j.common.util.Snowflake;
+import discord4j.core.object.component.Button;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import lombok.Getter;
@@ -15,10 +15,10 @@ public final class EmbedConstruct {
     private final MessageChannel channel;
     private final EmbedCreateSpec embed;
 
-    private final List<MessageButton> buttons;
+    private final List<Button> buttons;
     private final MessageMenu menu;
 
-    public EmbedConstruct(MessageChannel channel, EmbedCreateSpec embed, List<MessageButton> buttons, MessageMenu menu) {
+    public EmbedConstruct(MessageChannel channel, EmbedCreateSpec embed, List<Button> buttons, MessageMenu menu) {
         this.channel = channel;
         this.embed = embed;
 
@@ -30,7 +30,7 @@ public final class EmbedConstruct {
         this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, List.of(), null);
     }
 
-    public EmbedConstruct(String channelId, EmbedCreateSpec embed, List<MessageButton> buttons) {
+    public EmbedConstruct(String channelId, EmbedCreateSpec embed, List<Button> buttons) {
         this(DiscordCore.getClient().getChannelById(Snowflake.of(channelId)).ofType(MessageChannel.class).block(), embed, buttons, null);
     }
 

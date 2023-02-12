@@ -31,11 +31,7 @@ public final class MessageHandler {
     }
 
     public Message sendEmbedConstruct(EmbedConstruct messageConstruct) {
-        List<ActionComponent> components = new ArrayList<>();
-        messageConstruct.getButtons().forEach(it -> {
-            DiscordCore.getButtonHandler().addButton(it);
-            components.add(it.getButton());
-        });
+        List<ActionComponent> components = new ArrayList<>(messageConstruct.getButtons());
 
         if(messageConstruct.getMenu() != null) {
             List<SelectMenu.Option> options = new ArrayList<>();

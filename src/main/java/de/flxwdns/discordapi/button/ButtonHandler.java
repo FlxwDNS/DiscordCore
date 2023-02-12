@@ -1,28 +1,30 @@
 package de.flxwdns.discordapi.button;
 
 import de.flxwdns.discordapi.DiscordCore;
+import de.flxwdns.discordapi.message.ColorType;
+import de.flxwdns.discordapi.message.embed.EmbedBuilder;
 import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
+import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public final class ButtonHandler {
-    private final List<MessageButton> buttonList;
-
+    private final Map<String, Function<ButtonInteractionEvent, InteractionApplicationCommandCallbackReplyMono>> buttonMap;
 
     public ButtonHandler() {
-        buttonList = new ArrayList<>();
-
+        buttonMap = new HashMap<>();
 
         DiscordCore.getEventHandler().registerEvent(ButtonInteractionEvent.class, event -> {
-            var button = buttonList.stream().filter(it -> it.getButton().getCustomId().get().equals(event.getCustomId())).findFirst().get();
-            return button.onClick(event);
+            if(!buttonMap.containsKey(event.getCustomId())) return DiscordCore.getMessageHandler().getReplyEmbedConstruct(event.reply(),
+                    new EmbedBuilder().title("Provied a function").description("You need to provide a function!\n`DiscordCore.getButtonHandler().subscribe();`").color(ColorType.ERROR).toEmbed()
+            );
+            return buttonMap.get(event.getCustomId()).apply(event);
         });
-
-        //client.on(ChatInputInteractionEvent.class, event -> buttonList.stream().filter(button -> button.getButton().getCustomId().equals(event.getCommandName())).findFirst().get().onClick(event)).subscribe();
     }
 
-    public void addButton(MessageButton messageButton) {
-        buttonList.add(messageButton);
+    public void subscribe(String customId, Function<ButtonInteractionEvent, InteractionApplicationCommandCallbackReplyMono> event) {
+        buttonMap.put(customId, event);
     }
 }

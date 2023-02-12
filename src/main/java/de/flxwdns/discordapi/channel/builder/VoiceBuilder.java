@@ -2,7 +2,6 @@ package de.flxwdns.discordapi.channel.builder;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.PermissionOverwrite;
-import discord4j.core.spec.TextChannelCreateSpec;
 import discord4j.core.spec.VoiceChannelCreateSpec;
 
 import java.util.ArrayList;
