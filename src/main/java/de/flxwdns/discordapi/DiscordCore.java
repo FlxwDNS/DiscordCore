@@ -17,6 +17,7 @@ public final class DiscordCore {
     private static ButtonHandler buttonHandler;
     private static MenuHandler menuHandler;
     private static GatewayDiscordClient client;
+    private static Boolean logging;
 
     public static void setChannelHandler(@NotNull ChannelHandler channelHandler) {
         DiscordCore.channelHandler = channelHandler;
@@ -39,6 +40,9 @@ public final class DiscordCore {
     public static void setClient(@NotNull GatewayDiscordClient client) {
         DiscordCore.client = client;
     }
+    public static void setLogging(@NotNull Boolean logging) {
+        DiscordCore.logging = logging;
+    }
 
     public static ChannelHandler getChannelHandler() {
         return DiscordCore.channelHandler;
@@ -60,5 +64,8 @@ public final class DiscordCore {
     }
     public static GatewayDiscordClient getClient() {
         return DiscordCore.client;
+    }
+    public static Boolean getLogging() {
+        return DiscordCore.logging;
     }
 }

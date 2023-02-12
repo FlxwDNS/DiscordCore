@@ -16,10 +16,14 @@ public final class EventHandler {
     }
 
     public <E extends Event> void registerEvent(Class<E> event, Consumer<? super E> consumer) {
-        client.on(event).subscribe(consumer);
+        client.on(event).subscribe(consumer, error -> {
+            if(DiscordCore.getLogging()) error.printStackTrace();
+        });
     }
 
     public <E extends Event, T> void registerEvent(Class<E> event, Function<E, Publisher<T>> mapper) {
-        client.on(event, mapper).subscribe();
+        client.on(event, mapper).subscribe(null, error -> {
+            if(DiscordCore.getLogging()) error.printStackTrace();
+        });
     }
 }

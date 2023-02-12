@@ -3,12 +3,18 @@ package de.flxwdns.discordapi.channel;
 import de.flxwdns.discordapi.DiscordCore;
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.entity.channel.GuildChannel;
+import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.core.spec.TextChannelCreateSpec;
 import discord4j.core.spec.VoiceChannelCreateSpec;
+
+import java.util.Objects;
 
 public final class ChannelHandler {
 
     public GuildChannel getChannel(String guildId, String channelId) {
+
+
+
         return DiscordCore.getClient().getGuildById(Snowflake.of(guildId)).block().getChannelById(Snowflake.of(channelId)).block();
     }
 
