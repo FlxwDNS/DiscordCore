@@ -24,4 +24,12 @@ public final class ChannelHandler {
     public Channel createVoiceChannel(String guildId, VoiceChannelCreateSpec voiceChannel) {
         return DiscordCore.getClient().getGuildById(Snowflake.of(guildId)).block().createVoiceChannel(voiceChannel).block();
     }
+
+    public Boolean isChannelPresent(String guildId, String channelId) {
+        return getChannel(guildId, channelId) != null;
+    }
+
+    public Boolean isChannelByNamePresent(String guildId, String channelName) {
+        return getChannelByName(guildId, channelName) != null;
+    }
 }
