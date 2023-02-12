@@ -17,16 +17,20 @@ public final class EventHandler {
 
     public <E extends Event> void registerEvent(Class<E> event, Consumer<? super E> consumer) {
         client.on(event).doOnError(error -> {
+            System.out.println(DiscordCore.getLogging());
             if(DiscordCore.getLogging()) error.printStackTrace();
         }).subscribe(consumer, error -> {
+            System.out.println(DiscordCore.getLogging());
             if(DiscordCore.getLogging()) error.printStackTrace();
         });
     }
 
     public <E extends Event, T> void registerEvent(Class<E> event, Function<E, Publisher<T>> mapper) {
         client.on(event, mapper).doOnError(error -> {
+            System.out.println(DiscordCore.getLogging());
             if(DiscordCore.getLogging()) error.printStackTrace();
         }).subscribe(null, error -> {
+            System.out.println(DiscordCore.getLogging());
             if(DiscordCore.getLogging()) error.printStackTrace();
         });
     }
