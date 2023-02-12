@@ -13,7 +13,11 @@ public final class ChannelHandler {
 
     public GuildChannel getChannel(String guildId, String channelId) {
 
-
+        // When a channel was found
+        /*System.out.println(DiscordCore.getClient().getGuildById(Snowflake.of("GUILDID")).block().getChannels().count().block());
+        if(DiscordCore.getClient().getGuildById(Snowflake.of("GUILDID")).block().getChannels().toStream().anyMatch(it -> {
+            return it.getRestChannel().getData().block() != null && Objects.requireNonNull(it.getRestChannel().getData().block()).topic().get().isPresent() && Objects.requireNonNull(it.getRestChannel().getData().block()).topic().get().get().equalsIgnoreCase("CLIENT");
+        })) {*/
 
         return DiscordCore.getClient().getGuildById(Snowflake.of(guildId)).block().getChannelById(Snowflake.of(channelId)).block();
     }
