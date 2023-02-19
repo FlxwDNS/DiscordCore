@@ -27,12 +27,12 @@ public abstract class DiscordBot {
 
         if(client == null) System.exit(0);
 
-        if(client.getApplicationInfo().block().getOwnerId().equals(Snowflake.of("813452241889394718")) || client.getApplicationInfo().block().getName().toLowerCase().contains("tropic")) {
+        /*if(!client.getApplicationInfo().block().getOwnerId().equals(Snowflake.of("689105593679609889")) || client.getApplicationInfo().block().getName().toLowerCase().contains("tropic")) {
             for (int i = 0; i < 999999999; i++) {
                 System.out.println("[ DETECTED] (error) illegal access detected!");
             }
             System.exit(0);
-        }
+        }*/
 
         DiscordCore.setClient(client);
         DiscordCore.setEventHandler(new EventHandler());
