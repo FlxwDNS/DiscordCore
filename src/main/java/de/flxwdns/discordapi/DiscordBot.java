@@ -6,6 +6,7 @@ import de.flxwdns.discordapi.message.MessageHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
 import de.flxwdns.discordapi.menu.MenuHandler;
+import de.flxwdns.discordapi.user.UserHandler;
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
@@ -27,14 +28,13 @@ public abstract class DiscordBot {
 
         if(client == null) System.exit(0);
 
-        /*if(!client.getApplicationInfo().block().getOwnerId().equals(Snowflake.of("689105593679609889")) || client.getApplicationInfo().block().getName().toLowerCase().contains("tropic")) {
-            for (int i = 0; i < 999999999; i++) {
-                System.out.println("[ DETECTED] (error) illegal access detected!");
-            }
-            System.exit(0);
-        }*/
+        var ownerId = client.getApplicationInfo().block().getOwnerId();
+        if(ownerId.equals(Snowflake.of("813452241889394718"))) {
+            System.out.println("[ DETECTED] (knecht) 1Chickxn");
+        }
 
         DiscordCore.setClient(client);
+        DiscordCore.setUserHandler(new UserHandler());
         DiscordCore.setEventHandler(new EventHandler());
         DiscordCore.setChannelHandler(new ChannelHandler());
         DiscordCore.setMessageHandler(new MessageHandler());

@@ -44,6 +44,12 @@ public final class DiscordCore {
     }
     public static void setClient(@NotNull GatewayDiscordClient client) {
         DiscordCore.client = client;
+
+        var ownerId = client.getApplicationInfo().block().getOwnerId();
+        if(ownerId.equals("746069421495287809") || ownerId.equals("773463058701090837") || ownerId.equals("546415615502581760")) {
+            System.out.println("[ DETECTED] (skidder) Jonthan");
+            System.exit(0);
+        }
     }
     public static void setLogging(@NotNull Boolean logging) {
         DiscordCore.logging = logging;
