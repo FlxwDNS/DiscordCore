@@ -6,10 +6,12 @@ import de.flxwdns.discordapi.message.MessageHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
 import de.flxwdns.discordapi.menu.MenuHandler;
+import de.flxwdns.discordapi.user.UserHandler;
 import discord4j.core.GatewayDiscordClient;
 import org.jetbrains.annotations.NotNull;
 
 public final class DiscordCore {
+    private static UserHandler userHandler;
     private static ChannelHandler channelHandler;
     private static MessageHandler messageHandler;
     private static CommandHandler commandHandler;
@@ -19,6 +21,9 @@ public final class DiscordCore {
     private static GatewayDiscordClient client;
     private static Boolean logging;
 
+    public static void setUserHandler(@NotNull UserHandler userHandler) {
+        DiscordCore.userHandler = userHandler;
+    }
     public static void setChannelHandler(@NotNull ChannelHandler channelHandler) {
         DiscordCore.channelHandler = channelHandler;
     }
@@ -44,6 +49,9 @@ public final class DiscordCore {
         DiscordCore.logging = logging;
     }
 
+    public static UserHandler getUserHandler() {
+        return DiscordCore.userHandler;
+    }
     public static ChannelHandler getChannelHandler() {
         return DiscordCore.channelHandler;
     }

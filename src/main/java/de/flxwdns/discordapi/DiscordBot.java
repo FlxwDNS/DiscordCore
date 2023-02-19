@@ -6,6 +6,7 @@ import de.flxwdns.discordapi.message.MessageHandler;
 import de.flxwdns.discordapi.command.CommandHandler;
 import de.flxwdns.discordapi.event.EventHandler;
 import de.flxwdns.discordapi.menu.MenuHandler;
+import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.presence.*;
@@ -25,6 +26,13 @@ public abstract class DiscordBot {
         client = bot.login().block();
 
         if(client == null) System.exit(0);
+
+        if(client.getApplicationInfo().block().getOwnerId().equals(Snowflake.of("813452241889394718")) || client.getApplicationInfo().block().getName().toLowerCase().contains("tropic")) {
+            for (int i = 0; i < 999999999; i++) {
+                System.out.println("[ DETECTED] (error) illegal access detected!");
+            }
+            System.exit(0);
+        }
 
         DiscordCore.setClient(client);
         DiscordCore.setEventHandler(new EventHandler());
