@@ -13,6 +13,7 @@ public final class DiscordCore {
     @SneakyThrows
     public DiscordCore() {
         // Define defaultService
+        System.out.println("[Core] InjectionLayer next BotClient.class");
         var botClient = InjectionLayer.next(BotClient.class);
 
         // Check if configuration is defined
@@ -21,10 +22,13 @@ public final class DiscordCore {
         }
 
         // Register InjectionLayer
+        System.out.println("[Core] InjectionLayer next DefaultService");
         InjectionLayer.register(DefaultService.class, new DefaultServiceImpl());
+        System.out.println("[Core] InjectionLayer next Services");
         InjectionLayer.register(ChannelService.class, new ChannelServiceImpl());
 
         // Run onClientReady function
+        System.out.println("[Core] BotClient marked as ready");
         InjectionLayer.next(BotClient.class).onClientReady();
 
         // While disconnect
