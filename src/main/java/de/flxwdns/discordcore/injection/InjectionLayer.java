@@ -1,5 +1,6 @@
 package de.flxwdns.discordcore.injection;
 
+import de.flxwdns.discordcore.services.DefaultService;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -21,5 +22,10 @@ public class InjectionLayer {
         }
         instances.put(clazzInterface, instance);
         instances.put(instance.getClass(), instance);
+
+        // Print if loggin is enabled
+        if(instances.containsKey(DefaultService.class) && next(DefaultService.class).isLogging()) {
+            System.out.println("[ CORE] InjectionLayer register " + clazzInterface.getSimpleName());
+        }
     }
 }

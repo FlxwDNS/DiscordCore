@@ -16,7 +16,13 @@ import lombok.AllArgsConstructor;
 public final class DefaultServiceImpl implements DefaultService {
     private final GatewayDiscordClient client;
 
+    // Variables
+    private boolean isLogging;
+
     public DefaultServiceImpl() {
+        // Init default variables
+        this.isLogging = false;
+
         // Define configuration
         var clientCfg = InjectionLayer.next(BotClient.class).getClass().getAnnotation(ClientCfg.class);
 
@@ -41,7 +47,17 @@ public final class DefaultServiceImpl implements DefaultService {
     }
 
     @Override
+    public boolean isLogging() {
+        return isLogging;
+    }
+
+    @Override
     public void updateStatus(Status status, ClientActivity clientActivity) {
         client.updatePresence(ClientPresence.of(status, clientActivity)).subscribe();
+    }
+
+    @Override
+    public void enableLogging() {
+        this.isLogging = true;
     }
 }
