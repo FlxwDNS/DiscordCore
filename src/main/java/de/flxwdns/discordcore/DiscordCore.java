@@ -3,17 +3,15 @@ package de.flxwdns.discordcore;
 import de.flxwdns.discordcore.injection.InjectionLayer;
 import de.flxwdns.discordcore.register.BotClient;
 import de.flxwdns.discordcore.register.ClientCfg;
-import de.flxwdns.discordcore.services.ChannelService;
-import de.flxwdns.discordcore.services.DefaultService;
-import de.flxwdns.discordcore.services.impl.ChannelServiceImpl;
-import de.flxwdns.discordcore.services.impl.DefaultServiceImpl;
+import de.flxwdns.discordcore.services.*;
+import de.flxwdns.discordcore.services.impl.*;
 import lombok.SneakyThrows;
 
 public final class DiscordCore {
     @SneakyThrows
     public DiscordCore() {
         // Define defaultService
-        System.out.println("[ CORE] InjectionLayer next BotClient.class");
+        System.out.println("[ CORE] (info) InjectionLayer next BotClient.class");
         var botClient = InjectionLayer.next(BotClient.class);
 
         // Check if configuration is defined
@@ -22,12 +20,15 @@ public final class DiscordCore {
         }
 
         // Register InjectionLayer
-        System.out.println("[ CORE] InjectionLayer register DefaultService");
-        InjectionLayer.register(DefaultService.class, new DefaultServiceImpl());
-        InjectionLayer.register(ChannelService.class, new ChannelServiceImpl());
+        System.out.println("[ CORE] (info) InjectionLayer register DefaultService");
+        InjectionLayer.register(DefaultService.class, new ImplDefaultService());
+        InjectionLayer.register(EventService.class, new ImplEventService());
+        InjectionLayer.register(ChannelService.class, new ImplChannelService());
+        InjectionLayer.register(CommandService.class, new ImplCommandService());
+        InjectionLayer.register(ButtonService.class, new ImplButtonService());
 
         // Run onClientReady function
-        System.out.println("[ CORE] BotClient marked as ready");
+        System.out.println("[ CORE] (main) BotClient marked as ready");
         InjectionLayer.next(BotClient.class).onClientReady();
 
         // While disconnect

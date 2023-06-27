@@ -9,10 +9,10 @@ import discord4j.core.object.entity.channel.GuildChannel;
 import discord4j.core.spec.TextChannelCreateSpec;
 import discord4j.core.spec.VoiceChannelCreateSpec;
 
-public class ChannelServiceImpl implements ChannelService {
+public class ImplChannelService implements ChannelService {
     private final GatewayDiscordClient client;
 
-    public ChannelServiceImpl() {
+    public ImplChannelService() {
         this.client = InjectionLayer.next(DefaultService.class).client();
     }
 

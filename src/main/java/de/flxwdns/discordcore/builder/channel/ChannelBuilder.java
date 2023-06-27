@@ -1,5 +1,6 @@
 package de.flxwdns.discordcore.builder.channel;
 
+import de.flxwdns.discordcore.builder.channel.permission.ChannelPermission;
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.PermissionOverwrite;
 import discord4j.core.spec.TextChannelCreateSpec;

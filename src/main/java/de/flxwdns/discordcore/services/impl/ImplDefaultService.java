@@ -13,13 +13,13 @@ import discord4j.gateway.intent.IntentSet;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public final class DefaultServiceImpl implements DefaultService {
+public final class ImplDefaultService implements DefaultService {
     private final GatewayDiscordClient client;
 
     // Variables
     private boolean isLogging;
 
-    public DefaultServiceImpl() {
+    public ImplDefaultService() {
         // Init default variables
         this.isLogging = false;
 

@@ -1,4 +1,4 @@
-package de.flxwdns.discordcore.builder.channel;
+package de.flxwdns.discordcore.builder.channel.permission;
 
 import discord4j.rest.util.PermissionSet;
 import lombok.AllArgsConstructor;

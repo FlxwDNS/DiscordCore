@@ -11,8 +11,8 @@ public class InjectionLayer {
 
     public static @NotNull <T> T next(@NotNull Class<T> clazz) {
         if (instances.containsKey(clazz)) {
-            // Print if loggin is enabled
-            if(instances.containsKey(DefaultService.class) && next(DefaultService.class).isLogging()) {
+            // Print if logging is enabled
+            if(instances.containsKey(DefaultService.class) /*&& next(DefaultService.class).isLogging()*/) {
                 System.out.println("[ CORE] InjectionLayer next " + clazz.getSimpleName());
             }
 
